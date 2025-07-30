@@ -11,6 +11,33 @@ const axiosClient = axios.create({
   withCredentials: true,
 });
 
+
+axiosClient.interceptors.response.use(
+    (response) => {
+        // If the response is successful, just return it
+        return response;
+    },
+    (error) => {
+        // Check if the error is a 401 Unauthorized response
+        if (error.response && error.response.status === 401) {
+            // Get the clearUser function from the Zustand store
+            const { clearUser } = useAuthStore.getState();
+            
+            // Clear the user from the state
+            clearUser();
+            
+            // Redirect to the login page
+            // We use window.location to ensure a full page reload and state reset
+            if (typeof window !== 'undefined') {
+                window.location.href = '/dashboard/login';
+            }
+        }
+        
+        // Return the error to be handled by the calling function (e.g., in useApiRequest)
+        return Promise.reject(error);
+    }
+);
+
 // axiosClient.interceptors.response.use(
 //     (response) => response,
 //     (error) => {

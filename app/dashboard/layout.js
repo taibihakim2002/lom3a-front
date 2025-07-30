@@ -17,7 +17,9 @@ import {
     Menu,
     Bell,
     ExternalLink,
-    Loader2
+    Loader2,
+    Star,
+    Mail
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -35,8 +37,8 @@ const sidebarNavLinks = [
     { title: "المشاريع", href: "/dashboard/projects", icon: <FolderKanban /> },
     { title: "الملف الشخصي", href: "/dashboard/profile", icon: <User /> },
     { title: "الحجوزات", href: "/dashboard/bookings", icon: <CalendarCheck2 /> },
-    { title: "اراء العملاء", href: "/dashboard/testimonials", icon: <CalendarCheck2 /> },
-    { title: "الرسائل", href: "/dashboard/messages", icon: <CalendarCheck2 /> },
+    { title: "اراء العملاء", href: "/dashboard/testimonials", icon: <Star /> },
+    { title: "الرسائل", href: "/dashboard/messages", icon: <Mail /> },
 ];
 
 // --- مكون الشريط الجانبي ---

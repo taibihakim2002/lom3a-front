@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Camera, Clapperboard, MoveDown, ServerCrash, Sparkles, Instagram, Linkedin, Twitter, Heart, Aperture, ShoppingBag, Layers, Inbox, AlertCircle } from "lucide-react";
+import { ArrowLeft, Camera, Clapperboard, MoveDown, ServerCrash, Sparkles, Instagram, Linkedin, Twitter, Heart, Aperture, ShoppingBag, Layers, Inbox, AlertCircle, CalendarCheck2 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -62,7 +62,6 @@ function HeroSection() {
         offset: ["start start", "end start"],
     });
 
-    // تأثير Parallax: الخلفية تتحرك أبطأ من باقي الصفحة
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
@@ -114,14 +113,25 @@ function HeroSection() {
                     >
                         أُحوّل اللحظات العابرة إلى أعمال فنية خالدة، بعدسة تلتقط جوهر الإحساس وجمال التفاصيل.
                     </motion.p>
-                    <motion.div variants={itemVariants}> 
+                    {/* --- START: تم تعديل هذا الجزء --- */}
+                    <motion.div 
+                        variants={itemVariants}
+                        className="flex flex-col sm:flex-row gap-4 mt-8"
+                    > 
                         <Link href="/projects">
-                            <Button size="lg" className="mt-8 font-bold text-lg px-8 py-6 rounded-full group">
+                            <Button size="lg" className="font-bold text-lg px-8 py-6 rounded-full group w-full sm:w-auto">
                                 اكتشف أعمالي
                                 <ArrowLeft className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1" />
                             </Button>
                         </Link> 
+                        <Link href="/book">
+                            <Button size="lg" variant="outline" className="font-bold text-lg px-8 py-6 rounded-full group w-full sm:w-auto border-2">
+                                احجز الآن
+                                <CalendarCheck2 className="mr-2 h-5 w-5" />
+                            </Button>
+                        </Link> 
                     </motion.div>
+                    {/* --- END: تم تعديل هذا الجزء --- */}
                 </motion.div>
             </div>
             <motion.div 
@@ -133,6 +143,7 @@ function HeroSection() {
         </div>
     );
 }
+
 // ---------- قسم المشاريع المميزة (جديد) ----------
 function FeaturedProjects() {
     const { request: fetchProjectsRequest, loading, error } = useApiRequest();

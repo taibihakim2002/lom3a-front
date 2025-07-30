@@ -167,7 +167,7 @@ export default function ProjectDetailPage({ params }) {
                         <Link href="/projects"><Button variant="outline" className="mb-8"><ArrowRight className="ml-2 h-4 w-4" />العودة إلى كل المشاريع</Button></Link>
                         <h2 className="font-display text-4xl font-bold">هل ألهمك هذا المشروع؟</h2>
                         <p className="text-muted-foreground mt-4 max-w-xl mx-auto">دعنا نناقش كيف يمكننا توثيق قصتك القادمة بأسلوب مشابه.</p>
-                        <Link href="/booking"><Button size="lg" className="mt-8 font-bold">احجز جلستك الآن</Button></Link>
+                        <Link href="/book"><Button size="lg" className="mt-8 font-bold">احجز جلستك الآن</Button></Link>
                     </div>
                 </section>
             </main>

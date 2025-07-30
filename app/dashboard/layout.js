@@ -137,8 +137,8 @@ function DashboardHeader({ onLogout, isLoggingOut }) {
                     <Bell className="h-5 w-5" />
                 </Button> */}
                 <Avatar>
-                    {profile.profileImage && (         
-                        <AvatarImage src={profile.profileImage}  />
+                    {profile?.profileImage && (         
+                        <AvatarImage src={profile?.profileImage}  />
                     )}
                     <AvatarFallback>م</AvatarFallback>
                 </Avatar>

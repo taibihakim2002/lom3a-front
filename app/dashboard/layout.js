@@ -137,10 +137,10 @@ function DashboardHeader({ onLogout, isLoggingOut }) {
                     <Bell className="h-5 w-5" />
                 </Button>
                 <Avatar>
-                    {profile.profileImage && (    
+                    {profile.profileImage && (
+                                    
                         <AvatarImage src={profile.profileImage}  />
                     )}
-                    <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
                     <AvatarFallback>م</AvatarFallback>
                 </Avatar>
             </div>

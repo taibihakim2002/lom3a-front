@@ -133,12 +133,11 @@ function DashboardHeader({ onLogout, isLoggingOut }) {
                 </Link>
             </div>
             <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon">
+                {/* <Button variant="ghost" size="icon">
                     <Bell className="h-5 w-5" />
-                </Button>
+                </Button> */}
                 <Avatar>
-                    {profile.profileImage && (
-                                    
+                    {profile.profileImage && (         
                         <AvatarImage src={profile.profileImage}  />
                     )}
                     <AvatarFallback>م</AvatarFallback>

@@ -16,45 +16,7 @@ import globalApi from '@/utils/globalApi';
 import { PhotographerLoader } from '@/components/global/PhotographerLoader';
 import { useProfile } from './contexts/ProfileProvider';
 
-// --- بيانات المشاريع (جديد) ---
-const projectsData = [
-    { 
-        id: 'zefaf-sara-ahmed', 
-        title: 'زفاف سارة وأحمد', 
-        category: 'أعراس', 
-        coverImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1740&auto=format&fit=crop' 
-    },
-    { 
-        id: 'asrar-tabiaa', 
-        title: 'أسرار الطبيعة', 
-        category: 'طبيعة', 
-        coverImage: 'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=1740&auto=format&fit=crop' 
-    },
-    { 
-        id: 'hawiyat-montaj', 
-        title: 'هوية المنتج: عطور فاخرة', 
-        category: 'منتجات', 
-        coverImage: 'https://images.unsplash.com/photo-1612151832371-9de3371f4163?q=80&w=1740&auto=format&fit=crop' 
-    },
-];
 
-// --- بيانات الصور الفردية ---
-const galleryItems = [
-  { id: 4, title: 'نظرة عميقة', category: 'بورتريه', imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1664&auto=format&fit=crop', orientation: 'portrait' },
-  { id: 5, title: 'عناق الغيوم', category: 'طبيعة', imageUrl: 'https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=1740&auto=format&fit=crop', orientation: 'landscape' },
-  { id: 6, title: 'وجه حالم', category: 'بورتريه', imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1587&auto=format&fit=crop', orientation: 'portrait' },
-  { id: 7, title: 'تفاصيل العرس', category: 'زفاف', imageUrl: 'https://images.unsplash.com/photo-1587280501635-33554b645437?q=80&w=1587&auto=format&fit=crop', orientation: 'portrait' },
-  { id: 8, title: 'شاطئ الغروب', category: 'طبيعة', imageUrl: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=1740&auto=format&fit=crop', orientation: 'landscape' },
-  { id: 9, title: 'هوية المنتج', category: 'منتجات', imageUrl: 'https://images.unsplash.com/photo-1526947425960-945c6e72858f?q=80&w=1740&auto=format&fit=crop', orientation: 'landscape' },
-];
-const testimonialsData = [
-    { id: 1, name: 'سارة العبدالله', review: 'تحويل اللحظات العادية إلى ذكريات سينمائية. موهبة فذة وعين فنية لا مثيل لها.', avatar: 'https://i.pravatar.cc/150?img=1' },
-    { id: 2, name: 'أحمد بن علي', review: 'الاحترافية والإبداع في كل صورة. لقد تجاوزت النتائج كل توقعاتنا.', avatar: 'https://i.pravatar.cc/150?img=32' },
-    { id: 3, name: 'فاطمة محمود', review: 'تجربة التصوير كانت ممتعة والنتيجة النهائية كانت لوحة فنية.', avatar: 'https://i.pravatar.cc/150?img=5' },
-];
-
-
-// ---------- قسم الـ Hero السينمائي ----------
 function HeroSection() {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({

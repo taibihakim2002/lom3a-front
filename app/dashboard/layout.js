@@ -29,6 +29,7 @@ import globalApi from "@/utils/globalApi";
 import { showToast } from "@/utils/showToast";
 import useAuthStore from "@/store/authStore";
 import { FullScreenLoader } from "@/components/global/FullScreenLoader";
+import { useProfile } from '../contexts/ProfileProvider';
 
 
 // --- بيانات روابط الشريط الجانبي المحدثة ---
@@ -84,6 +85,7 @@ function Sidebar({ onLogout, isLoggingOut }) {
 
 // --- مكون رأس الصفحة ---
 function DashboardHeader({ onLogout, isLoggingOut }) {
+    const { profile, isLoading } = useProfile();
     return (
         <header className="flex items-center justify-between h-20 px-4 sm:px-8 border-b border-border bg-card/50 backdrop-blur-sm">
             <div className="flex items-center gap-4">
@@ -135,6 +137,9 @@ function DashboardHeader({ onLogout, isLoggingOut }) {
                     <Bell className="h-5 w-5" />
                 </Button>
                 <Avatar>
+                    {profile.profileImage && (    
+                        <AvatarImage src={profile.profileImage}  />
+                    )}
                     <AvatarImage src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
                     <AvatarFallback>م</AvatarFallback>
                 </Avatar>

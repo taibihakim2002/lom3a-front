@@ -206,13 +206,13 @@ export default function NewProjectPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
-                                <div className="space-y-2">
+                                {/* <div className="space-y-2">
                                     <Label>إضافة فيديوهات</Label>
                                     <div className="flex gap-2">
                                         <div className="relative flex-grow"><Video className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" /><Input value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="رابط الفيديو..." className="pr-10" /></div>
                                         <Button type="button" onClick={() => addVideo(videoUrl)}>إضافة</Button>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="space-y-2">
                                     <Label>إضافة صور</Label>
                                     <div  className="w-full p-8 border-2 border-dashed border-border rounded-lg text-center cursor-pointer hover:bg-card/80 transition-colors">

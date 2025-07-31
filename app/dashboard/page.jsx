@@ -122,13 +122,24 @@ export default function DashboardPage() {
         if (result.success) {
             showToast("success", "تم تحديث حالة الحجز");
             setRecentBookings(prev => prev.map(b => b._id === id ? { ...b, ...result.data.data.booking } : b));
+
             setStatusUpdateInfo(null);
             setUpdateNotes("");
         } else {
             showToast("error", result.error || "فشل تحديث الحالة");
         }
     };
+    const handleDirectUpdateStatus = async (id, status) => {
+        const payload = { status };
+        const result = await updateBookingRequest(() => globalApi.updateBookingStatus(id, payload));
+        if (result.success) {
+            showToast("success", "تم تحديث حالة الحجز بنجاح");
+            setRecentBookings(prev => prev.map(b => b._id === id ? { ...b, status } : b));
 
+        } else {
+            showToast("error", result.error || "فشل تحديث الحالة");
+        }
+    };
     const handleDeleteBooking = async () => {
         if (!bookingToDelete) return;
         const result = await deleteRequest(() => globalApi.deleteBooking(bookingToDelete));
@@ -215,7 +226,9 @@ export default function DashboardPage() {
                                                             <DropdownMenuSubContent>
                                                                 <DropdownMenuItem onClick={() => openStatusUpdateDialog(booking, 'مؤكد')}>مؤكد</DropdownMenuItem>
                                                                 <DropdownMenuItem onClick={() => openStatusUpdateDialog(booking, 'ملغي')}>ملغي</DropdownMenuItem>
-                                                                <DropdownMenuItem onClick={() => handleUpdateStatus(booking._id, 'مكتمل')}>مكتمل</DropdownMenuItem>
+                                                                <DropdownMenuItem onClick={() => handleDirectUpdateStatus(booking._id, 'مكتمل')}>مكتمل</DropdownMenuItem>
+                                                                <DropdownMenuItem onClick={() => handleDirectUpdateStatus(booking._id, 'مكتمل')}>مكتمل</DropdownMenuItem>
+                                             
                                                             </DropdownMenuSubContent>
                                                         </DropdownMenuSub>
                                                         <DropdownMenuSeparator />

@@ -11,11 +11,11 @@ const useApiRequest = () => {
     setError("");
     try {
       const response = await apiCall();
-      console.log(response);
+      // console.log(response);
       setData(response.data);
       return { success: true, data: response.data };
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       let errorMsg = "حدث خطأ غير متوقع";
       if (err?.response?.data?.code) {
         errorMsg = errorMessages[err?.response?.data?.code] || errorMsg;

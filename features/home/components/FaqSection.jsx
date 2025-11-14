@@ -1,0 +1,92 @@
+'use client';
+
+import { motion } from 'framer-motion'; 
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+
+
+export default function FaqSection() {
+
+  const faqData = [
+    {
+      question: "كم يستغرق تنظيف المنزل بالكامل؟",
+      answer: "يعتمد الوقت على حجم المنزل وحالته. التنظيف العميق لشقة متوسطة (3 غرف نوم) يستغرق عادة من 4 إلى 6 ساعات مع فريقنا."
+    },
+    {
+      question: "هل أحتاج لتوفير مواد التنظيف؟",
+      answer: "لا، نحن في \"لمعة البيت\" نأتي مجهزين بالكامل بجميع مواد التنظيف والمعدات الاحترافية اللازمة لضمان أفضل نتيجة."
+    },
+    {
+      question: "هل أنتم مؤمنون ضد الأضرار؟",
+      answer: "نعم بالطبع. جميع موظفينا مؤمنون، ونتحمل كامل المسؤولية عن أي ضرر قد يحدث (لا قدر الله) أثناء عملية التنظيف."
+    },
+    {
+      question: "ما هي المدن التي تغطونها في الأردن؟",
+      answer: "نحن نغطي حالياً جميع مناطق عمّان الكبرى، بالإضافة إلى الزرقاء، السلط، وإربد. نعمل على التوسع قريباً."
+    }
+  ];
+
+  return (
+    <motion.section 
+      className="relative py-24 bg-secondary" // خلفية رمادية
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.7 }}
+    >
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+        
+        {/* ----- 1. عنوان القسم ----- */}
+        <motion.div 
+          className="text-center max-w-2xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-lg font-semibold text-blue-600">هل لديك استفسار؟</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mt-2">
+            الأسئلة الشائعة
+          </h2>
+        </motion.div>
+
+        {/* ----- 2. الأكورديون (Accordion) - باستخدام shadcn/ui ----- */}
+        <div className="max-w-3xl mx-auto">
+          {/* (تم استبدال "div" بـ "Accordion") */}
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {faqData.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                {/* (استخدام "AccordionItem" مع تنسيقاتك) */}
+                <AccordionItem 
+                  value={`item-${index}`} 
+                  className="bg-background rounded-xl shadow-md overflow-hidden border-b-0"
+                >
+                  {/* (استخدام "AccordionTrigger" بدلاً من "button") */}
+                  <AccordionTrigger 
+                    className="w-full text-right p-6 text-lg font-bold text-gray-800 hover:no-underline hover:bg-secondary rounded-t-xl"
+                  >
+                    {/* (shadcn/ui يضيف الأيقونة تلقائياً) */}
+                    <span className="flex-1 text-right">{faq.question}</span>
+                  </AccordionTrigger>
+                  
+                  {/* (استخدام "AccordionContent" بدلاً من "motion.div") */}
+                  <AccordionContent className="p-6 pt-0 text-right text-base text-gray-600">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))}
+          </Accordion>
+        </div>
+      </div>
+
+      {/* --- (تم حذف فاصل الموجة السفلي) --- */}
+    </motion.section>
+  );
+}

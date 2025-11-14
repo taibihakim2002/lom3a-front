@@ -2,41 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
+/* تم تحديث هذا الملف ليعكس الألوان الفعلية المستخدمة في التصميم (الأزرق والأخضر)
+*/
 @layer base {
   :root {
-    /* تم تحويل لوحة الألوان المقترحة إلى متغيرات HSL */
-    --background: 0 0% 10%; /* #1a1a1a */
-    --foreground: 0 0% 96.1%; /* #f5f5f5 */
+    /* --- الوضع الفاتح (الافتراضي) --- */
+    --background: 0 0% 100%; /* white */
+    --foreground: 0 0% 10%; /* #1a1a1a (النص الداكن) */
 
-    --card: 0 0% 16.5%; /* #2a2a2a */
-    --card-foreground: 0 0% 96.1%; /* #f5f5f5 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
 
-    --popover: 0 0% 16.5%; /* #2a2a2a */
-    --popover-foreground: 0 0% 96.1%; /* #f5f5f5 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 44.8 93.4% 51.2%; /* #eab308 */
-    --primary-foreground: 0 0% 10%; /* نص داكن فوق اللون الذهبي */
+    /* (الأزرق) bg-blue-600 */
+    --primary: 217 91% 60%; 
+    --primary-foreground: 0 0% 100%; /* white */
 
-    --secondary: 0 0% 25.1%; /* #404040 */
-    --secondary-foreground: 0 0% 96.1%; /* #f5f5f5 */
+    /* (الأخضر) bg-green-500 */
+    --success: 142 63% 49%;
+    --success-foreground: 0 0% 100%; /* white */
 
-    --muted: 0 0% 25.1%; /* #404040 */
-    --muted-foreground: 0 0% 63.9%; /* #a3a3a3 */
+    /* (الرمادي الفاتح) bg-gray-50 */
+    --secondary: 0 0% 96.1%; 
+    --secondary-foreground: 0 0% 10%;
 
-    --accent: 0 0% 25.1%; /* #404040 */
-    --accent-foreground: 0 0% 96.1%; /* #f5f5f5 */
+    /* (الرمادي للنصوص) text-gray-700 */
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%; 
+
+    /* (الأزرق الفاتح) bg-blue-100 */
+    --accent: 220 100% 95%; 
+    --accent-foreground: 217 91% 60%; /* text-blue-600 */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 25.1%; /* #404040 */
-    --input: 0 0% 25.1%; /* #404040 */
-    --ring: 44.8 93.4% 51.2%; /* #eab308 */
+    --border: 0 0% 89.8%; /* #e5e5e5 */
+    --input: 0 0% 89.8%;
+    --ring: 217 91% 60%; /* الأزرق */
 
     --radius: 0.5rem;
   }
 
-  /* لا حاجة لقاعدة .dark منفصلة لأن التصميم داكن بشكل افتراضي */
+  /* --- الوضع المظلم (لأقسام الحجز والفوتر) --- */
+  html.dark {
+    /* (الأسود الداكن) bg-gray-900 */
+    --background: 220 13% 10%; 
+    /* (الأبيض الفاتح) text-white */
+    --foreground: 0 0% 100%; 
+
+    --card: 0 0% 100% / 0.05; /* bg-white/5 */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 13% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    /* (الأزرق يبقى كما هو) */
+    --primary: 217 91% 60%; 
+    --primary-foreground: 0 0% 100%;
+    
+    /* (الأخضر يبقى كما هو) */
+    --success: 142 63% 49%;
+    --success-foreground: 0 0% 100%;
+
+    /* (الرمادي الداكن) bg-gray-800 */
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 13% 18%;
+    /* (الرمادي الفاتح للنصوص) text-gray-300 */
+    --muted-foreground: 210 14% 83%; 
+
+    --accent: 220 13% 18%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* (حدود داكنة) border-gray-700 */
+    --border: 215 14% 34%;
+    /* (خلفية الإدخال) bg-gray-800 */
+    --input: 220 13% 18%;
+    --ring: 217 91% 60%;
+  }
 }
 
 @layer base {

@@ -85,7 +85,7 @@ export default function BookingSection() {
           {/* ----- 2. العمود الأيسر (فورم الحجز) ----- */}
           <motion.div 
             className="w-full"
-            initial={{ opacity: 0, x: -50 }} 
+            initial={{ opacity: 0, x: 0 }} 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.4 }}

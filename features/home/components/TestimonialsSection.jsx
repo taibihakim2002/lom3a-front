@@ -138,20 +138,27 @@ export default function TestimonialsSection() {
                  
                  {/* أزرار التنقل للموبايل */}
                   <div className="absolute bottom-6 left-6 flex gap-2 z-20 lg:hidden">
-                     <m.button 
-                     onClick={prevTestimonial}
-                     className="bg-background p-2 rounded-full shadow-md hover:bg-accent transition-colors"
-                     whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+                    <m.button 
+                       onClick={prevTestimonial}
+                       // ✅ التعديل: إضافة وصف للزر لقارئات الشاشة
+                       aria-label="رأي العميل السابق"
+                       className="bg-background p-2 rounded-full shadow-md hover:bg-accent transition-colors"
+                       whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                      >
-                     <ChevronRight size={20} className="text-foreground" />
+                       <ChevronRight size={20} className="text-foreground" />
                      </m.button>
+
                      <m.button 
-                     onClick={nextTestimonial}
-                     className="bg-background p-2 rounded-full shadow-md hover:bg-accent transition-colors"
-                     whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+                       onClick={nextTestimonial}
+                       // ✅ التعديل: إضافة وصف للزر لقارئات الشاشة
+                       aria-label="رأي العميل التالي"
+                       className="bg-background p-2 rounded-full shadow-md hover:bg-accent transition-colors"
+                       whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                      >
-                     <ChevronLeft size={20} className="text-foreground" />
+                       <ChevronLeft size={20} className="text-foreground" />
                      </m.button>
+
+                     
                  </div>
 
              </div>

@@ -32,7 +32,7 @@ export default function Footer() {
     { 
       icon: <MapPin size={16} className="text-blue-400" />, 
       text: "عمّان، الأردن",
-      href: "#" // (يمكن وضع رابط خرائط جوجل هنا)
+      href: "#" 
     },
     { 
       icon: <Clock size={16} className="text-blue-400" />, 
@@ -64,10 +64,18 @@ export default function Footer() {
               </p>
               {/* أيقونات التواصل الاجتماعي */}
               <div className="flex gap-4 justify-end pt-2">
-                <Link href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <Link 
+                  href="#" 
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                  aria-label="زيارة صفحتنا على فيسبوك" // ✅ تم إضافة aria-label
+                >
                   <Facebook size={20} />
                 </Link>
-                <Link href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
+                <Link 
+                  href="#" 
+                  className="text-gray-400 hover:text-blue-500 transition-colors"
+                  aria-label="زيارة صفحتنا على انستغرام" // ✅ تم إضافة aria-label
+                >
                   <Instagram size={20} />
                 </Link>
               
@@ -76,7 +84,8 @@ export default function Footer() {
 
             {/* --- العمود 2: روابط سريعة --- */}
             <div className="md:mx-auto">
-              <h4 className="text-lg font-bold text-background mb-4">روابط سريعة</h4>
+              {/* ✅ تم تغيير h4 إلى h3 */}
+              <h3 className="text-lg font-bold text-background mb-4">روابط سريعة</h3>
               <ul className="space-y-3">
                 {quickLinks.map(link => (
                   <li key={link.name}>
@@ -90,7 +99,8 @@ export default function Footer() {
 
             {/* --- العمود 3: معلومات الاتصال --- */}
             <div className="md:mx-auto">
-              <h4 className="text-lg font-bold text-background mb-4">معلومات الاتصال</h4>
+              {/* ✅ تم تغيير h4 إلى h3 */}
+              <h3 className="text-lg font-bold text-background mb-4">معلومات الاتصال</h3>
               <ul className="space-y-4 text-sm">
                 {contactInfo.map(item => (
                   <li key={item.text} className="flex items-center justify-end gap-3">
@@ -105,7 +115,8 @@ export default function Footer() {
             
             {/* --- العمود 4: الخريطة --- */}
             <div>
-              <h4 className="text-lg font-bold text-background mb-4">موقعنا</h4>
+              {/* ✅ تم تغيير h4 إلى h3 */}
+              <h3 className="text-lg font-bold text-background mb-4">موقعنا</h3>
               {/* (هذه خريطة وهمية، يمكن استبدالها بـ iframe من خرائط جوجل) */}
               <div className="h-48 w-full rounded-lg overflow-hidden relative border border-gray-700">
                 <img 

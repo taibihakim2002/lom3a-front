@@ -16,7 +16,7 @@ export default function HeroSection() {
    * -> قلّلت delayChildren وstaggerChildren لتقليل التأخير المرئي.
    * -> استخدام prefers-reduced-motion أدنى لإعطاء تجربة متوافقة مع إعدادات المستخدم.
    */
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -24,7 +24,7 @@ export default function HeroSection() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: 0 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: "easeOut" } }
   };
@@ -37,12 +37,12 @@ export default function HeroSection() {
       className="relative flex items-center min-h-[85vh] sm:min-h-screen pt-28 sm:pt-36 lg:pt-12"
       aria-labelledby="hero-heading"
     >
+      {/* صورة الخلفية: استخدمنا next/image مع fill و priority بحيث يتعرّف المتصفح عليها كـ LCP resource */}
       <div className="absolute inset-0 -z-10">
         <Image
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
-          priority
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
@@ -132,7 +132,6 @@ export default function HeroSection() {
               alt="تنظيف أريكة"
               width={450}
               height={450}
-              priority={true} // ليست بالضرورة LCP لكن مرئية فورية؛ جعلها غير أولوية افتراضياً
               sizes="(max-width: 640px) 300px, (max-width: 1024px) 450px, 600px"
               className="object-cover w-full h-full"
             />

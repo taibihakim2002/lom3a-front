@@ -37,16 +37,15 @@ export default function HeroSection() {
       className="relative flex items-center min-h-[85vh] sm:min-h-screen pt-28 sm:pt-36 lg:pt-12"
       aria-labelledby="hero-heading"
     >
-      {/* صورة الخلفية: استخدمنا next/image مع fill و priority بحيث يتعرّف المتصفح عليها كـ LCP resource */}
       <div className="absolute inset-0 -z-10">
-        <Image
+        {/* <Image
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
           priority
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
-        />
+        /> */}
         {/* طبقة Overlay */}
         <div className="absolute inset-0 bg-background opacity-80" />
       </div>

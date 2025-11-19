@@ -16,9 +16,10 @@ export default function Header() {
 
   const primaryNavLinks = [
     { name: 'الرئيسية', href: '/' },
-    { name: 'الخدمات', href: '/services' },
-    { name: 'من نحن', href: '/about' },
-    { name: 'تواصل معنا', href: '/contact' },
+    { name: 'الخدمات', href: '#services' },
+    { name: 'معرض الاعمال', href: '#gallery' },
+    { name: 'الحجز', href: '#booking' },
+    { name: 'من نحن', href: '#about' },
   ];
 
   const cityLinks = [ 

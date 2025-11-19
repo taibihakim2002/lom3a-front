@@ -7,7 +7,7 @@ import {  motion } from 'framer-motion';
 
 
 export default function HeroSection() {
-  const bgImageUrl = "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  const bgImageUrl = "/services/hero.webp";
   const roundImageUrl = "https://images.pexels.com/photos/6198656/pexels-photo-6198656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"; 
 
   const containerVariants = {
@@ -19,7 +19,7 @@ export default function HeroSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: 0 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } }
   };
 

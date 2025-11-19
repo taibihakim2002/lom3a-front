@@ -36,6 +36,7 @@ export default function AboutSection() {
       whileInView={{ opacity: 1, y: 0 }} // يظهر ويصعد لمكانه
       viewport={{ once: true, amount: 0.3 }} // تفعيل الحركة مرة واحدة عند رؤية 30% من القسم
       transition={{ duration: 0.7, ease: "easeOut" }}
+      id='about'
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-4 md:px-6">
         {/* ----- العمود الأيمن: الصورة (تم تعديله هنا) ----- */}

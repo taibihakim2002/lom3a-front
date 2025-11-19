@@ -32,6 +32,7 @@ export default function FaqSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.7 }}
+      id='faq'
     >
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">

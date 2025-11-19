@@ -12,10 +12,10 @@ export default function Footer() {
   
   const quickLinks = [
     { name: 'الرئيسية', href: '/' },
-    { name: 'من نحن', href: '/about' },
-    { name: 'الخدمات', href: '/services' },
-    { name: 'معرض الأعمال', href: '/gallery' },
-    { name: 'احجز الآن', href: '/booking' },
+    { name: 'الخدمات', href: '#services' },
+    { name: 'معرض الاعمال', href: '#gallery' },
+    { name: 'الحجز', href: '#booking' },
+    { name: 'من نحن', href: '#about' },
   ];
 
   const contactInfo = [

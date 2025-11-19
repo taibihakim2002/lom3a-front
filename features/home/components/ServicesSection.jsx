@@ -19,37 +19,37 @@ export default function ServicesSection() {
       icon: <Home size={28} className="text-background" />,
       title: "تنظيف المنازل الدوري",
       description: "نحافظ على نظافة منزلك بشكل مستمر ومنظم.",
-      imageUrl: "https://images.pexels.com/photos/7217988/pexels-photo-7217988.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      imageUrl: "/services/house.webp"
     },
     {
       icon: <Sparkles size={28} className="text-background" />,
       title: "التنظيف العميق",
       description: "خدمة شاملة تصل إلى أعمق الأماكن.",
-      imageUrl: "https://images.pexels.com/photos/4239013/pexels-photo-4239013.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "/services/deep.webp"
     },
     {
       icon: <Building size={28} className="text-background" />,
       title: "تنظيف ما بعد البناء",
       description: "نزيل جميع مخلفات البناء والدهان.",
-      imageUrl: "https://images.pexels.com/photos/7218567/pexels-photo-7218567.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "/services/building.webp"
     },
     {
       icon: <Bath size={28} className="text-background" />,
       title: "المطابخ والحمامات",
       description: "تعقيم وتلميع شامل لإزالة الدهون.",
-      imageUrl: "https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "/services/kitchen.jpeg"
     },
     {
       icon: <Layers size={28} className="text-background" />,
       title: "تنظيف السجاد والموكيت",
       description: "نستخدم أحدث الأجهزة لإعادة الحيوية.",
-      imageUrl: "https://images.pexels.com/photos/1668868/pexels-photo-1668868.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "/services/sijad.jpg"
     },
     {
       icon: <Sofa size={28} className="text-background" />,
       title: "تنظيف الكنب والمفروشات",
       description: "تنظيف بالبخار لإزالة البقع والروائح.",
-      imageUrl: "https://images.pexels.com/photos/4352151/pexels-photo-4352151.jpeg?auto=compress&cs=tinysrgb&w=600"
+      imageUrl: "/services/kanap.webp"
     },
   ];
 
@@ -136,7 +136,7 @@ export default function ServicesSection() {
                     <p className="text-gray-200 text-sm mb-4">{service.description}</p>
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Button asChild variant="link" className="text-white p-0 text-base">
-                        <Link href="/booking">
+                        <Link href="#booking">
                           احجز الآن
                           <ArrowLeft size={18} className="mr-2" />
                         </Link>

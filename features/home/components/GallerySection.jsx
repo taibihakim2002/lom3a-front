@@ -3,50 +3,28 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { AnimatePresence, motion } from 'framer-motion'; 
-
-// *** تمت الإضافة: أيقونات جديدة للأقسام الجديدة ***
-import { Search, X,} from 'lucide-react'; 
+import { Search, X, Loader2 } from 'lucide-react'; // (تمت إضافة Loader2)
 import { Card, CardContent } from '@/components/ui/card';
+
+// --- إضافات للربط بالباكاند ---
+import { useQuery } from '@tanstack/react-query';
+import { galleryApi } from '@/features/gallery/api';
+// ------------------------------
 
 export default function GallerySection() {
   
-  // (نستخدم 'useState' لتتبع الفلتر الحالي والصورة المختارة)
   const [filter, setFilter] = useState('الكل');
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // (تمت إضافة "category" لكل صورة)
-  const galleryImages = [
-    {
-      img: "https://images.pexels.com/photos/2819088/pexels-photo-2819088.jpeg?auto=compress&cs=tinysrgb&w=800",
-      title: "مطبخ لامع - عبدون",
-      category: "مطابخ وحمامات"
-    },
-    {
-      img: "https://images.pexels.com/photos/6585613/pexels-photo-6585613.jpeg?auto=compress&cs=tinysrgb&w=600",
-      title: "تنظيف كنب - الصويفية",
-      category: "كنب ومفروشات"
-    },
-    {
-      img: "https://images.pexels.com/photos/3935320/pexels-photo-3935320.jpeg?auto=compress&cs=tinysrgb&w=600",
-      title: "تعقيم حمام - دير غبار",
-      category: "مطابخ وحمامات"
-    },
-    {
-      img: "https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=800",
-      title: "تنظيف ما بعد البناء - الرابية",
-      category: "تنظيف منازل"
-    },
-    {
-      img: "https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800",
-      title: "تنظيف زجاج - مكاتب",
-      category: "تنظيف منازل"
-    },
-    {
-      img: "https://images.pexels.com/photos/4352151/pexels-photo-4352151.jpeg?auto=compress&cs=tinysrgb&w=600",
-      title: "تنظيف أريكة - دابوق",
-      category: "كنب ومفروشات"
-    }
-  ];
+  // 1. جلب البيانات من الـ API بدلاً من المصفوفة الثابتة
+  const { data, isLoading } = useQuery({
+    queryKey: ['public-gallery'],
+    queryFn: galleryApi.getAll,
+    staleTime: 1000 * 60 * 5, // كاش لمدة 5 دقائق
+  });
+
+  // استخراج الصور (أو مصفوفة فارغة في حالة التحميل/الخطأ)
+  const galleryImages = data?.data?.data?.images || [];
 
   const filters = ['الكل', 'تنظيف منازل', 'كنب ومفروشات', 'مطابخ وحمامات'];
 
@@ -57,11 +35,12 @@ export default function GallerySection() {
 
   return (
     <motion.section 
-      className="relative pt-16 pb-36  bg-secondary" // يكمل على نفس الخلفية الرمادية
+      className="relative pt-16 pb-36 bg-secondary" // يكمل على نفس الخلفية الرمادية
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.7 }}
+      id="gallery"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         
@@ -106,44 +85,57 @@ export default function GallerySection() {
           ))}
         </motion.div>
 
-        <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {/* (AnimatePresence لتفعيل حركة الدخول والخروج عند الفلترة) */}
-          <AnimatePresence>
-            {filteredImages.map((image) => (
-              <motion.div
-                key={image.img}
-                layoutId={image.img} 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                whileHover={{ scale: 1.03 }}
-              >
-                <Card 
-                  className="relative h-80 rounded-lg shadow-lg overflow-hidden group cursor-pointer border-0"
-                  onClick={() => setSelectedImage(image)}
-                >
-                  <CardContent className="p-0">
-                    <img
-                      src={image.img}
-                      alt={image.title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 
-                                  flex flex-col items-center justify-center transition-opacity duration-300">
-                      <div className="text-white text-center p-4">
-                        <Search size={32} />
-                        <p className="text-lg font-bold mt-2">{image.title}</p>
-                      </div>
+        {/* ----- 3. شبكة الصور ----- */}
+        {/* عرض مؤشر تحميل أثناء جلب البيانات */}
+        {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+                <Loader2 className="h-10 w-10 animate-spin text-primary" />
+            </div>
+        ) : (
+            <motion.div 
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              <AnimatePresence>
+                {filteredImages.length > 0 ? (
+                    filteredImages.map((image) => (
+                    <motion.div
+                        key={image._id || image.id} // استخدام الـ ID من قاعدة البيانات
+                        layoutId={image._id || image.id} 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        whileHover={{ scale: 1.03 }}
+                    >
+                        <Card 
+                        className="relative h-80 rounded-lg shadow-lg overflow-hidden group cursor-pointer border-0"
+                        onClick={() => setSelectedImage(image)}
+                        >
+                        <CardContent className="p-0">
+                            <img
+                            src={image.img}
+                            alt={image.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 
+                                        flex flex-col items-center justify-center transition-opacity duration-300">
+                            <div className="text-white text-center p-4">
+                                <Search size={32} />
+                                <p className="text-lg font-bold mt-2">{image.title}</p>
+                            </div>
+                            </div>
+                        </CardContent>
+                        </Card>
+                    </motion.div>
+                    ))
+                ) : (
+                    <div className="col-span-full text-center py-10 text-gray-500">
+                        لا توجد صور متاحة في هذا القسم حالياً.
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+        )}
 
       </div>
 
@@ -163,8 +155,7 @@ export default function GallerySection() {
             {/* حاوية الصورة المتحركة */}
             <motion.div
               className="fixed inset-0 z-[70] flex items-center justify-center p-4"
-              // (يجب أن يتطابق "layoutId" مع الصورة المصغرة)
-              layoutId={selectedImage.img}
+              layoutId={selectedImage._id || selectedImage.id}
               transition={{ duration: 0.4, ease: "easeInOut" }}
             >
               <img

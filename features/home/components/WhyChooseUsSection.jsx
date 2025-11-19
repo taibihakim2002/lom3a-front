@@ -94,7 +94,7 @@ export default function WhyChooseUsSection() {
                 className="w-fit m-auto md:m-0" // لجعل الزر بحجمه الطبيعي
               >
                 <Button asChild size="lg" className="bg-primary hover:bg-blue-700 text-background text-lg px-8 py-7 rounded-full">
-                  <Link href="/services">اكتشف خدماتنا</Link>
+                  <Link href="#services">اكتشف خدماتنا</Link>
                 </Button>
               </motion.div>
             </div>

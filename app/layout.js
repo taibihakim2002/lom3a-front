@@ -12,12 +12,14 @@ const fontSans = Almarai({
   subsets: ["arabic"],
   weight: ["400", "700"], // (Almarai يدعم أوزان أقل، 400 و 700 كافية)
   variable: "--font-sans-arabic", // اسم المتغير بقي كما هو
+  display: 'swap',
 });
 
 const fontDisplay = Poppins({
   subsets: ["latin"],
   weight: ["600", "700", "800"],
   variable: "--font-display-latin",
+  display: 'swap',
 });
 
 // ================================

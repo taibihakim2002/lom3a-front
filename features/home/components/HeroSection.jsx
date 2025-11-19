@@ -42,7 +42,7 @@ export default function HeroSection() {
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
-          priority
+          priority={true}
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />

@@ -9,7 +9,7 @@ import { motion, Variants } from 'framer-motion';
 export default function HeroSection() {
   const bgImageUrl = "/services/hero.webp";
   const roundImageUrl =
-    "https://images.pexels.com/photos/6198656/pexels-photo-6198656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+    "/roundred.jpeg";
 
   
   const containerVariants = {
@@ -39,7 +39,8 @@ export default function HeroSection() {
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
-          sizes="100vw"
+          priority 
+          sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
         {/* طبقة Overlay */}
@@ -126,10 +127,11 @@ export default function HeroSection() {
             <Image
               src={roundImageUrl}
               alt="تنظيف أريكة"
-              width={450}
-              height={450}
-              sizes="(max-width: 640px) 300px, (max-width: 1024px) 450px, 600px"
+              width={600} 
+              height={600}
+              sizes="(max-width: 640px) 300px, (max-width: 1024px) 450px, 450px"
               className="object-cover w-full h-full"
+              priority={false} 
             />
           </div>
         </motion.div>

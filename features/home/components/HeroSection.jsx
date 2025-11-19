@@ -42,7 +42,7 @@ export default function HeroSection() {
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
-          priority={true}
+          priority
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
@@ -132,7 +132,7 @@ export default function HeroSection() {
               alt="تنظيف أريكة"
               width={450}
               height={450}
-              priority={false} // ليست بالضرورة LCP لكن مرئية فورية؛ جعلها غير أولوية افتراضياً
+              priority={true} // ليست بالضرورة LCP لكن مرئية فورية؛ جعلها غير أولوية افتراضياً
               sizes="(max-width: 640px) 300px, (max-width: 1024px) 450px, 600px"
               className="object-cover w-full h-full"
             />

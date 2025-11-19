@@ -67,5 +67,12 @@
     "eslint-plugin-react": "^7.37.5",
     "prettier": "^3.6.2",
     "tw-animate-css": "^1.3.5"
-  }
+  },
+  "browserslist": [
+    "chrome 64",
+    "edge 79",
+    "firefox 67",
+    "opera 51",
+    "safari 12"
+  ]
 }

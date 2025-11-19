@@ -38,14 +38,14 @@ export default function HeroSection() {
       aria-labelledby="hero-heading"
     >
       <div className="absolute inset-0 -z-10">
-        {/* <Image
+        <Image
           src={bgImageUrl}
           alt="" // زينة بصرية؛ اجعل alt فارغًا لقراء الشاشة إن لم تحمل معنى
           fill
           priority
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center' }}
-        /> */}
+        />
         {/* طبقة Overlay */}
         <div className="absolute inset-0 bg-background opacity-80" />
       </div>

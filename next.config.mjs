@@ -2,10 +2,7 @@
 const nextConfig = {
   images: {
     // السماح بالنطاقات الخارجية
-    remotePatterns: [
-      { protocol: 'https', hostname: 'images.pexels.com' },
-      { protocol: 'https', hostname: 'res.cloudinary.com' },
-    ],
+    domains: ['images.unsplash.com', "images.pexels.com", "res.cloudinary.com", "youtube.com"],
     // تفعيل التنسيقات الحديثة (WebP و AVIF)
     formats: ['image/avif', 'image/webp'],
     // تقليل جودة الصور قليلاً لتقليل الحجم (لا يؤثر على الرؤية)

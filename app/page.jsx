@@ -1,32 +1,26 @@
-import dynamic from 'next/dynamic'; // 1. استيراد dynamic
 
-// المكونات التي تظهر في الشاشة الأولى (Above the fold) تبقى كما هي (استيراد مباشر)
 import Header from '@/components/layout/public/Header';
 import HeroSection from '@/features/home/components/HeroSection';
+import AboutSection from '@/features/home/components/AboutSection';
+import WhyChooseUsSection from '@/features/home/components/WhyChooseUsSection';
+import ServicesSection from '@/features/home/components/ServicesSection';
 
-// 2. باقي المكونات يتم تحميلها عند الحاجة (Lazy Loading)
-const AboutSection = dynamic(() => import('@/features/home/components/AboutSection'));
-const WhyChooseUsSection = dynamic(() => import('@/features/home/components/WhyChooseUsSection'));
-const ServicesSection = dynamic(() => import('@/features/home/components/ServicesSection'));
-const GallerySection = dynamic(() => import('@/features/home/components/GallerySection'));
-const HowItWorksSection = dynamic(() => import('@/features/home/components/HowItWorksSection'));
-const TestimonialsSection = dynamic(() => import('@/features/home/components/TestimonialsSection'));
-const FaqSection = dynamic(() => import('@/features/home/components/FaqSection'));
-const BookingSection = dynamic(() => import('@/features/home/components/BookingSection'));
-const Footer = dynamic(() => import('@/components/layout/public/Footer'));
+import HowItWorksSection from '@/features/home/components/HowItWorksSection';
+import TestimonialsSection from '@/features/home/components/TestimonialsSection';
+import FaqSection from '@/features/home/components/FaqSection';
+import BookingSection from '@/features/home/components/BookingSection';
+import Footer from '@/components/layout/public/Footer';
+import GallerySection from '@/features/home/components/GallerySection';
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        {/* يتم تحميله فوراً لأهميته لمحركات البحث وتجربة المستخدم */}
-        <HeroSection /> 
-        
-        {/* سيتم تحميل هذه الأجزاء بشكل منفصل مما يسرع فتح الصفحة */}
+      <main >
+        <HeroSection />
         <AboutSection />
         <WhyChooseUsSection /> 
-        <ServicesSection />
+        {/* <ServicesSection /> */}
         <GallerySection />
         <HowItWorksSection />
         <TestimonialsSection />

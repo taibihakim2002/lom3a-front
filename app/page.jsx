@@ -1,23 +1,27 @@
-
 import Header from '@/components/layout/public/Header';
-import HeroSection from '@/features/home/components/HeroSection';
-import AboutSection from '@/features/home/components/AboutSection';
-import WhyChooseUsSection from '@/features/home/components/WhyChooseUsSection';
-import ServicesSection from '@/features/home/components/ServicesSection';
-
-import HowItWorksSection from '@/features/home/components/HowItWorksSection';
-import TestimonialsSection from '@/features/home/components/TestimonialsSection';
-import FaqSection from '@/features/home/components/FaqSection';
-import BookingSection from '@/features/home/components/BookingSection';
+import HeroSection from '@/features/home/components/HeroSection'; // اترك هذا كما هو ليتحمل بسرعة
 import Footer from '@/components/layout/public/Footer';
-import GallerySection from '@/features/home/components/GallerySection';
+import dynamic from 'next/dynamic';
+
+// تحميل باقي الأقسام عند الحاجة فقط
+const AboutSection = dynamic(() => import('@/features/home/components/AboutSection'));
+const WhyChooseUsSection = dynamic(() => import('@/features/home/components/WhyChooseUsSection'));
+const ServicesSection = dynamic(() => import('@/features/home/components/ServicesSection'));
+const GallerySection = dynamic(() => import('@/features/home/components/GallerySection'));
+const HowItWorksSection = dynamic(() => import('@/features/home/components/HowItWorksSection'));
+const TestimonialsSection = dynamic(() => import('@/features/home/components/TestimonialsSection'));
+const FaqSection = dynamic(() => import('@/features/home/components/FaqSection'));
+const BookingSection = dynamic(() => import('@/features/home/components/BookingSection'));
 
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main >
+      <main>
+        {/* يتم تحميل هذا القسم فوراً */}
         <HeroSection />
+        
+        {/* باقي الأقسام ستتحمل بشكل منفصل مما يقلل حجم الجافا سكريبت الأولي */}
         <AboutSection />
         <WhyChooseUsSection /> 
         <ServicesSection />

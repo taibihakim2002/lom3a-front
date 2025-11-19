@@ -11,20 +11,16 @@ export default function HeroSection() {
   const roundImageUrl =
     "https://images.pexels.com/photos/6198656/pexels-photo-6198656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
-  /**
-   * Framer Motion variants
-   * -> قلّلت delayChildren وstaggerChildren لتقليل التأخير المرئي.
-   * -> استخدام prefers-reduced-motion أدنى لإعطاء تجربة متوافقة مع إعدادات المستخدم.
-   */
-  const containerVariants: Variants = {
+  
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.06, delayChildren: 0.08 }
+      transition: { staggerChildren: 0.03, delayChildren: 0.04 }
     }
   };
 
-  const itemVariants: Variants = {
+  const itemVariants = {
     hidden: { opacity: 0, x: 0 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: "easeOut" } }
   };

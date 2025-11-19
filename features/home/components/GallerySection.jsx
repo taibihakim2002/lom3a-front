@@ -2,11 +2,9 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-// 1. استيراد المكونات الخفيفة (m, LazyMotion) + AnimatePresence
 import { AnimatePresence, m, LazyMotion, domAnimation } from 'framer-motion'; 
 import { Search, X, Loader2 } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-// 2. استيراد مكون الصور من Next.js
+import { Card } from '@/components/ui/card'; // (تم حذف CardContent من الاستيراد لأنه غير ضروري هنا)
 import Image from 'next/image';
 
 import { useQuery } from '@tanstack/react-query';
@@ -31,7 +29,6 @@ export default function GallerySection() {
     : galleryImages.filter(image => image.category === filter);
 
   return (
-    // 3. تفعيل LazyMotion لتقليل حجم الجافا سكريبت
     <LazyMotion features={domAnimation}>
       <m.section 
         className="relative pt-16 pb-36 bg-secondary" 
@@ -105,22 +102,25 @@ export default function GallerySection() {
                          transition={{ duration: 0.4, ease: "easeInOut" }}
                          whileHover={{ scale: 1.03 }}
                      >
+                         {/* التعديل الأساسي هنا:
+                            1. وضعنا الصورة مباشرة داخل Card
+                            2. حذفنا CardContent
+                            3. تأكدنا من أن Card لديه relative و overflow-hidden
+                         */}
                          <Card 
-                           className="relative h-80 rounded-lg shadow-lg overflow-hidden group cursor-pointer border-0"
+                           className="relative h-80 rounded-lg shadow-lg overflow-hidden group cursor-pointer border-0 w-full"
                            onClick={() => setSelectedImage(image)}
                          >
-                         <CardContent className="p-0 h-full w-full relative">
-                             {/* 4. استبدال img بـ Image لتحسين الأداء بشكل جذري */}
                              <Image
                                src={image.img}
                                alt={image.title}
-                               fill // تملأ الكارد بالكامل (لأن الكارد له h-80)
-                               className="object-cover transition-transform duration-500 group-hover:scale-110"
-                               // 5. أحجام الصور: ضروري جداً لتحميل صور صغيرة للموبايل
+                               fill 
+                               className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                               quality={75} // جودة متوازنة
+                               quality={75} 
                              />
                              
+                             {/* طبقة العنوان (Overlay) */}
                              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 
                                              flex flex-col items-center justify-center transition-opacity duration-300 z-10">
                                <div className="text-white text-center p-4">
@@ -128,7 +128,6 @@ export default function GallerySection() {
                                  <p className="text-lg font-bold mt-2">{image.title}</p>
                                </div>
                              </div>
-                         </CardContent>
                          </Card>
                      </m.div>
                      ))
@@ -147,7 +146,6 @@ export default function GallerySection() {
         <AnimatePresence>
           {selectedImage && (
             <>
-              {/* الخلفية */}
               <m.div
                 className="fixed inset-0 bg-black/80 z-[60] backdrop-blur-sm"
                 initial={{ opacity: 0 }}
@@ -156,14 +154,11 @@ export default function GallerySection() {
                 onClick={() => setSelectedImage(null)}
               />
               
-              {/* الصورة المكبرة */}
               <m.div
                 className="fixed inset-0 z-[70] flex items-center justify-center p-4 pointer-events-none"
                 layoutId={selectedImage._id || selectedImage.id}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
-                 {/* ملاحظة: للصورة المكبرة، غالباً استخدام img العادية أفضل للحفاظ على سلاسة حركة layoutId 
-                     أو يمكن استخدام next/image مع width/height محددين. هنا سنبقي img لضمان عدم تكسر الأنيميشن المعقد */}
                 <img
                   src={selectedImage.img}
                   alt={selectedImage.title}
@@ -171,7 +166,6 @@ export default function GallerySection() {
                 />
               </m.div>
 
-              {/* زر الإغلاق */}
               <m.button
                 className="fixed top-6 right-6 z-[80] text-white bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-full p-3 transition-colors"
                 onClick={() => setSelectedImage(null)}
@@ -185,7 +179,6 @@ export default function GallerySection() {
           )}
         </AnimatePresence>
 
-        {/* فاصل الموجة السفلي */}
         <div className="absolute bottom-0 left-0 w-full h-[50px] sm:h-[150px] md:h-[100px]">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" className="w-full h-full">
             <path fill="#ffffff" fillOpacity="1" d="M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,208C672,213,768,171,864,138.7C960,107,1056,85,1152,96C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
